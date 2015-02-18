@@ -1,0 +1,31 @@
+{
+  "name": "simple-corsproxy",
+  "description": "Proxy to access resources that lack the Access-Control-Allow-Origin * header",
+  "version": "0.0.1",
+  "homepage": "http://github.com/bmpvieira/simple-corsproxy",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bmpvieira/simple-corsproxy.git"
+  },
+  "author": {
+    "name": "Bruno Vieira",
+    "email": "mail@bmpvieira.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.40.0"
+  },
+  "keywords": [
+    "cors",
+    "proxy",
+    "server",
+    "heroku"
+  ],
+  "main": "index.js",
+  "bin": {
+    "simple-corsproxy": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
