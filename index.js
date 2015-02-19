@@ -7,7 +7,7 @@ var index = fs.readFileSync('index.html');
 var port = process.env.PORT || 8080
 
 http.createServer(function (req, res) {
-  console.log(req.url);
+  console.log(req.url.slice(1));
   res.setTimeout(25000)
   res.setHeader('Access-Control-Allow-Origin', '*')
   if (req.url == "/"){
