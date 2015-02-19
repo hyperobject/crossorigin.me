@@ -21,7 +21,7 @@ http.createServer(function (req, res) {
       res.end()
     })
   }
-  catch(e) {}}
+  catch(e) {console.log(e);}}
 }).listen(port)
 
 console.log("Listening on port: " + port)
