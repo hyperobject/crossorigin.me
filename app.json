@@ -1,8 +1,6 @@
 {
-  "name": "simple-corsproxy",
-  "description": "Proxy to access resources that lack the Access-Control-Allow-Origin * header",
-  "website": "https://github.com/bmpvieira/heroku-dat-template",
-  "repository": "https://github.com/bmpvieira/heroku-dat-template",
+  "name": "crossorigin.me",
+  "description": "Long live CORS proxies!",
   "keywords": [
     "cors",
     "proxy",

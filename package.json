@@ -2,14 +2,9 @@
   "name": "simple-corsproxy",
   "description": "Proxy to access resources that lack the Access-Control-Allow-Origin * header",
   "version": "0.0.1",
-  "homepage": "http://github.com/bmpvieira/simple-corsproxy",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/bmpvieira/simple-corsproxy.git"
-  },
   "author": {
-    "name": "Bruno Vieira",
-    "email": "mail@bmpvieira.com"
+    "name": "technoboy10",
+    "email": "npm@tekhne-blog.appspotmail.com"
   },
   "license": "MIT",
   "dependencies": {
@@ -23,7 +18,7 @@
   ],
   "main": "index.js",
   "bin": {
-    "simple-corsproxy": "index.js"
+    "crossorigin.me": "index.js"
   },
   "scripts": {
     "start": "node index.js"
