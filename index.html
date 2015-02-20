@@ -5,17 +5,45 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link href='http://fonts.googleapis.com/css?family=Cabin|Montserrat|Roboto:300' rel='stylesheet' type='text/css'>
 <style>
-body {
-	background: #EF4836;
+html, body {
+	min-width: 100%;
+	background: #CCC;
 	font-family: Cabin;
+}
+#header {
+	position: fixed;
+	top:0;
+	left:0;
+	height:5vh;
+	margin:auto;
+	padding-bottom: 0.1vh;
+	/*z-index: 100000;*/
+	font-family: Roboto;
+	font-size: 4vh;
+	text-align: center;
+	min-width: 100%;
+	background: #EF4836;
+	color: #EEEEEE;
+	/*box-shadow: 0px 10pxpx #000;*/
+}
+#content {
+	padding: 5vh 10px;
+	margin: auto;
+	background: #EEEEEE;
+	height: 100vh;
+	width: 75vw;
+	color: #333;
+	box-shadow: 0px 0px 13px #555;
 }
 </style>
 </head>
 <body>
-<h1>crossorigin.me</h1>
+<h1 id="header">&#8646;</h1>
+<div id="content">
 <h2>Long live CORS proxies!</h2>
 <p>crossorigin.me is a CORS proxy, much like the now defunct corsproxy.com.</p>
 
 <p>WEBSITE BEING BUILT STILL OK</p>
+</div>
 </body>
 </html>
