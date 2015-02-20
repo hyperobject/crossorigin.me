@@ -2,7 +2,28 @@
 <html>
 <head>
 <title>crossorigin.me</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<style>
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(0);
+}
+.parallax__layer--back {
+  background-color:#F22613;
+  transform: translateZ(-1px);
+}
+</style>
 </head>
 <body>
 <h1>crossorigin.me - Long live CORS proxies!</h1>
