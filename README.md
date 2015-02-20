@@ -1,31 +1,14 @@
-simple-corsproxy
-==========
-> Proxy to access resources that lack the Access-Control-Allow-Origin * header
+crossorigin.me
+==============
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/bmpvieira/simple-corsproxy.git)
+A CORS proxy replacement. Based partly on https://github.com/bmpvieira/simple-corsproxy.
 
-<!-- https://devcenter.heroku.com/articles/heroku-button -->
-<!-- http://expeditedssl.com/heroku-button-maker -->
+## What?
+crossorigin.me is a CORS proxy. It lets developers (like you!) access resources from other sites that don't have CORS enabled on their server.
 
-Install
--------
-```$ npm install simple-corsproxy -g```
+## Why?
+One of the more well known CORS proxies, corsproxy.com, recently disappeared. Quite a few things relied on that site, so I decided to set a new proxy up. 
 
-Usage
------
+## Where?
 
-```
-$ simple-corsproxy
-=> Listening on port: 8080 # or environment variable PORT
-```
-
-Add the url to the proxy path, like:
-
-```
-http://localhost:8080/https://google.com
-```
-
-
-License
--------
-[MIT](https://raw.github.com/bmpvieira/simple-corsproxy/master/LICENSE)
+[Here](http://crossorigin.me).
