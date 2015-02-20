@@ -6,22 +6,25 @@ var index = fs.readFileSync('index.html');
 
 var port = process.env.PORT || 8080
 
-http.createServer(function (req, res) {
-  console.log(req.url.slice(1));
-  res.setTimeout(25000)
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  if (req.url == "/"){
-  	res.writeHead(200);
-  	res.write(index);
-  	res.end();
-  }else{
-  try {
-    request(req.url.slice(1), {encoding: null}, function(error, response, body) {
-      res.write(body)
-      res.end()
-    })
-  }
-  catch(e) {console.log(e);}}
-}).listen(port)
+var server = http.createServer(function(res, req){
+    if fs.existsSync(req.url.slice(1)){
+    	res.writeHead(200);
+    	res.write(fs.readFileSync(req.url.slice(1)));
+    	res.end()
+    } else {
+    	try {
+			res.setTimeout(25000);
+			res.setHeader('Access-Control-Allow-Origin: *');
+			request(req.url.slice(1), {encoding:null}, function(error, response, body){
+				res.writeHead(200);
+				res.write(body);
+				res.end();
+			})
+    	} catch (e) {
+    		res.writeHead(200);
+    		res.write("Error: " + String(e));
+    	}
+    }
+});
 
-console.log("Listening on port: " + port)
+server.listen(port);
