@@ -3,13 +3,15 @@
 <head>
 <title>crossorigin.me</title>
 <link rel="icon" type="image/png" href="favicon.png">
-<link href='http://fonts.googleapis.com/css?family=Cabin|Montserrat|Roboto:300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300' rel='stylesheet' type='text/css'>
 <style>
 html, body {
 	min-width: 100%;
 	background: #CCC;
-	font-family: Cabin;
+	font-family: Roboto;
+	text-align: center;
 }
+
 #header {
 	position: fixed;
 	top:0;
@@ -18,7 +20,6 @@ html, body {
 	margin:auto;
 	padding-bottom: 0.1vh;
 	/*z-index: 100000;*/
-	font-family: Roboto;
 	font-size: 4vh;
 	text-align: center;
 	min-width: 100%;
@@ -26,24 +27,74 @@ html, body {
 	color: #EEEEEE;
 	/*box-shadow: 0px 10pxpx #000;*/
 }
+
+a {
+	color: #EF4836;
+	text-decoration: underline;
+}
+
+#header a {
+	text-decoration: none;
+	color: inherit;
+}
+
+h3 a {
+	color:inherit;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+h3 a:hover {
+	text-decoration: underline;
+}
 #content {
-	padding: 5vh 10px;
+	padding: 5vh 0px;
 	margin: auto;
 	background: #EEEEEE;
 	height: 100vh;
-	width: 75vw;
+	width: 60vw;
 	color: #333;
 	box-shadow: 0px 0px 13px #555;
+	font-size: 1em;
+}
+
+#text {
+	margin: auto;
+	max-width: 50vw;
+}
+
+code {
+	font-family: 'Droid Sans Mono';
+	font-size: 0.7em;
+	background: #ddd;
+	padding: 5px 10px;
+	box-shadow: inset 0 0 3px #999;
 }
 </style>
 </head>
 <body>
-<h1 id="header">&#8646;</h1>
+<h1 id="header"><a href="#">&#8646;</a></h1>
 <div id="content">
+<div id="text">
 <h2>Long live CORS proxies!</h2>
-<p>crossorigin.me is a CORS proxy, much like the now defunct corsproxy.com.</p>
+<p>Welcome to crossorigin.me, the free CORS proxy for everyone!</p>
+<br />
 
-<p>WEBSITE BEING BUILT STILL OK</p>
+<h3><a name="what" href="#what">What's a "CORS proxy"?</a></h3>
+<p>A <a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> proxy is a service that allows developers (probably you) to access resources from other websites, without having to own that website. </p>
+<br />
+
+<h3><a name="why" href="#why">Why does this site exist?</a></h3>
+<p>A popular CORS proxy, corsproxy.com, recently disappeared. Several <a href="http://phosphorus.github.io">cool projects</a> relied on CORS proxy, so I decided to set up a replacement service.</p>
+
+<br />
+<h3><a name="how" href="#how">How do I use it?</a></h3>
+<p>It's really easy. When you need to access a resource from a website that isn't CORS-enabled, append 'http://crossorigin.me' to the beginning of that URL. For example, if you wanted to grab the Google homepage, your code would request</p>
+<code>
+http://crossorigin.me/http://google.com
+</code>
+<p>Remember to keep the 'http://' or 'https://' after 'crossorigin.me/'.
+</div>
 </div>
 </body>
 </html>
