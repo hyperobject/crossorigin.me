@@ -67,9 +67,9 @@ h3 a:hover {
 code {
 	font-family: 'Droid Sans Mono';
 	font-size: 0.7em;
-	background: #ddd;
+	background: #EFEFEF;
 	padding: 5px 10px;
-	box-shadow: inset 0 0 3px #999;
+	box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 }
 </style>
 </head>
@@ -126,6 +126,11 @@ http://crossorigin.me/http://google.com
 <br />
 <h3><a name="security" href="#security">AAAAH SO INSECURE!!!</a></h3>
 <p>...not really. By default, CORS requests do <b>not</b> send or set cookies, and neither does crossorigin.me. I take security very seriously, and I'll do my best to plug any serious security holes. Oh, and crossorigin.me is <a href="http://github.com/technoboy10/crossorigin.me">open source</a>, so please feel free to fix any security issues you find. :) </p>
+<br />
+<h3><a name="missing" href="#missing">This doesn't support PUT or DELETE!</a></h3>
+<p>No, and I'm pretty sure it shouldn't. If crossorigin.me supported those verbs, you could do some pretty messed up stuff. </p>
+<code>DELETE your_banking_account</code>
+<p>Disagree? <a href="https://github.com/technoboy10/crossorigin.me/issues/new">File an issue</a> and let's talk.</p>
 <br />
 </div>
 </div>
