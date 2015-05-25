@@ -45,6 +45,9 @@ var server = http.createServer(function (req, res) {
 			res.write(favicon);
 			res.end()
 		default:
+			if (req.url.indexOf('vivastreet') > -1){
+				res.end('tempbanned');
+			} else {
 			try {
 			res.setTimeout(25000);
 			res.setHeader('Access-Control-Allow-Origin', '*');
@@ -55,5 +58,6 @@ var server = http.createServer(function (req, res) {
     		} catch (e) {
     	   	res.end('Error: ' +  ((e instanceof TypeError) ? "make sure your URL is correct" : String(e)));
     		}
+			}
 	}
 }
