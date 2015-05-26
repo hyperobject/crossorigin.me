@@ -48,6 +48,7 @@ var server = http.createServer(function (req, res) {
 			try {
 			res.setTimeout(25000);
 			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 			request(req.url.slice(1), {encoding: null}, function(error, response, body) {
       			res.write(body)
       			res.end()
