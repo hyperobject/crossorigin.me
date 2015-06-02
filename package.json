@@ -1,5 +1,5 @@
 {
-  "name": "simple-corsproxy",
+  "name": "crossorigin.me",
   "description": "Proxy to access resources that lack the Access-Control-Allow-Origin * header",
   "version": "0.0.1",
   "author": {
