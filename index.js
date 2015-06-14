@@ -8,6 +8,8 @@ var favicon = fs.readFileSync('favicon.ico');
 
 var port = process.env.PORT || 8080;
 
+var copyHeaders = ['Date', 'Last-Modified', 'Expires', 'Cache-Control', 'Pragma', 'Content-Length', 'Content-Type'];
+
 var server = http.createServer(function (req, res) {
 	var d = domain.create();
 	d.on('error', function (e){
@@ -53,10 +55,20 @@ function handler(req, res) {
 				res.setHeader('Access-Control-Allow-Origin', '*');
 				res.setHeader('Access-Control-Allow-Credentials', false);
 				res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-				request(req.url.slice(1), {encoding: null}, function(error, response, body) {
-					res.write(body);
-					res.end();
-				});
+				res.setHeader('Expires', new Date(Date.now() + 86400000).toUTCString()); // one day in the future
+				var r = request(req.url.slice(1), {encoding: null});
+				r.pipefilter = function(response, dest) {
+					for (var header in response.headers) {
+						dest.removeHeader(header);
+					}
+					for (var i=0; i<copyHeaders.length; i++) {
+						var responseHeader = response.headers[copyHeaders[i].toLowerCase()];
+						if (responseHeader) {
+							res.setHeader(copyHeaders[i], responseHeader);
+						}
+					}
+				};
+				r.pipe(res);
 			} catch (e) {
 				res.end('Error: ' +  ((e instanceof TypeError) ? "make sure your URL is correct" : String(e)));
 			}
