@@ -56,19 +56,16 @@ function handler(req, res) {
 				res.setHeader('Access-Control-Allow-Credentials', false);
 				res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 				res.setHeader('Expires', new Date(Date.now() + 86400000).toUTCString()); // one day in the future
-				var r = request(req.url.slice(1), {encoding: null});
-				r.pipefilter = function(response, dest) {
-					for (var header in response.headers) {
-						dest.removeHeader(header);
-					}
+				request(req.url.slice(1), {encoding: null}, function(error, response, body) {
 					for (var i=0; i<copyHeaders.length; i++) {
 						var responseHeader = response.headers[copyHeaders[i].toLowerCase()];
 						if (responseHeader) {
 							res.setHeader(copyHeaders[i], responseHeader);
 						}
 					}
-				};
-				r.pipe(res);
+					res.write(body);
+					res.end();
+				});
 			} catch (e) {
 				res.end('Error: ' +  ((e instanceof TypeError) ? "make sure your URL is correct" : String(e)));
 			}
