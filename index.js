@@ -45,8 +45,8 @@ var server = http.createServer(function (req, res) {
 			res.write(favicon);
 			res.end()
 		default:
-			if (req.url.indexOf('vivastreet') > -1){
-				res.end('tempbanned');
+			if (req.url.indexOf('vivastreet') > -1 || req.url.indexOf('porn') > -1){
+				res.end('banned');
 			} else {
 			try {
 			res.setTimeout(25000);
