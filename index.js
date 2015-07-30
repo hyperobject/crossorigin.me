@@ -47,8 +47,8 @@ function handler(req, res) {
 			res.write(favicon);
 			res.end();
 		default:
-			if (req.url.indexOf('vivastreet') > -1){
-				res.end('tempbanned');
+			if (req.url.indexOf('vivastreet') > -1 || req.url.indexOf('porn') > -1){
+				res.end('banned');
 			} else {
 			try {
 				res.setTimeout(25000);
@@ -56,7 +56,7 @@ function handler(req, res) {
 				res.setHeader('Access-Control-Allow-Credentials', false);
 				res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 				res.setHeader('Expires', new Date(Date.now() + 86400000).toUTCString()); // one day in the future
-				var r = request(req.url.slice(1), {encoding: null});
+				var r = request(req.url.slice(1), {encoding: null, rejectUnauthorized: false});
 				r.pipefilter = function(response, dest) {
 					for (var header in response.headers) {
 						dest.removeHeader(header);
