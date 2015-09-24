@@ -8,7 +8,7 @@ var favicon = fs.readFileSync('favicon.ico');
 
 var port = process.env.PORT || 8080;
 
-var copyHeaders = ['Date', 'Last-Modified', 'Expires', 'Cache-Control', 'Pragma', 'Content-Length', 'Content-Type'];
+var allowedOriginalHeaders = /^Date|Last-Modified|Expires|Cache-Control|Pragma|Content-Length|Content-Type|Access-Control-Allow/i;
 
 var server = http.createServer(function (req, res) {
 	var d = domain.create();
@@ -59,12 +59,8 @@ function handler(req, res) {
 				var r = request(req.url.slice(1), {encoding: null, rejectUnauthorized: false});
 				r.pipefilter = function(response, dest) {
 					for (var header in response.headers) {
-						dest.removeHeader(header);
-					}
-					for (var i=0; i<copyHeaders.length; i++) {
-						var responseHeader = response.headers[copyHeaders[i].toLowerCase()];
-						if (responseHeader) {
-							res.setHeader(copyHeaders[i], responseHeader);
+						if (!allowedOriginalHeaders.test(header)) {
+							dest.removeHeader(header);	
 						}
 					}
 				};
