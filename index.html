@@ -3,15 +3,23 @@
 <head>
 <title>crossorigin.me</title>
 <link rel="icon" href="favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://blockchain.info/Resources/wallet/pay-now-button.js"></script>
 <style>
 html, body {
-	min-width: 100%;
 	background: #EEE;
-	font-family: Roboto;
+	font-family: 'Roboto';
 	text-align: center;
+	margin: 0;
+}
+html {
+	min-width: 100%;
+}
+    
+body, #header{
+	min-width: 168px;
 }
 
 #header {
@@ -24,7 +32,7 @@ html, body {
 	z-index: 100000;
 	font-size: 4vh;
 	text-align: center;
-	min-width: 100%;
+	width: 100vw;
 	background: #EF4836;
 	color: #EEEEEE;
 	/*box-shadow: 0px 10pxpx #000;*/
@@ -38,6 +46,12 @@ a {
 #header a {
 	text-decoration: none;
 	color: inherit;
+	line-height: 5vh;
+	transition: color .5s;
+}
+    
+#header a:hover{
+	color: white;
 }
 
 h3 a {
@@ -51,11 +65,10 @@ h3 a:hover {
 }
 #content {
 	padding: 5vh 0px;
-	margin: auto;
+	margin: 8px auto;
 	background: white;
 	min-height: 100vh;
-	min-width: 400px;
-	width: 60vw;
+	width: 60%;
 	color: #333;
 	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 	font-size: 1em;
@@ -66,12 +79,41 @@ h3 a:hover {
 	max-width: 50vw;
 }
 
+.blockchain-btn{
+	font-size:16px;
+	margin:0 auto;
+	width: 300px
+}
+.blockchain.stage-loading{
+	text-align:center;
+}
+    
 code {
+	display: inline-block;
 	font-family: 'Droid Sans Mono';
 	font-size: 0.7em;
 	background: #EFEFEF;
 	padding: 5px 10px;
 	box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+    
+@media screen and (max-width: 600px) {
+	#content {
+		width: 100%;
+		margin: 0px;
+	}
+	#text {
+		max-width: 80vw;
+	}
+	    
+	.blockchain-btn{
+		max-width:300px;
+		width: 80vw
+	}
+    .blockchain-btn img{
+		max-width:300px;
+		width: 80vw;
+	}
 }
 </style>
 </head>
@@ -92,13 +134,13 @@ code {
 <h2>Long live CORS proxies!</h2>
 <p>Welcome to crossorigin.me, the free CORS proxy for everyone!</p>
 <br />
-<div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn"
+<div class="blockchain-btn"
      data-address="1SYK76KL3TDSM6AZ12MFrC3bnSKfKDmcW"
      data-shared="false">
     <div class="blockchain stage-begin">
         <img src="https://blockchain.info/Resources/buttons/donate_64.png"/>
     </div>
-    <div class="blockchain stage-loading" style="text-align:center">
+    <div class="blockchain stage-loading">
         <img src="https://blockchain.info/Resources/loading-large.gif"/>
     </div>
     <div class="blockchain stage-ready">
@@ -123,7 +165,7 @@ code {
 <h3><a name="how" href="#how">How do I use it?</a></h3>
 <p>It's really easy. When you need to access a resource from a website that isn't CORS-enabled, append 'http://crossorigin.me' to the beginning of that URL. For example, if you wanted to grab the Google homepage, your code would request</p>
 <code>
-https://crossorigin.me/https://google.com
+https://&#8203;crossorigin.me/&#8203;https://&#8203;google.com
 </code>
 <p>Remember to keep the 'http://' or 'https://' after 'crossorigin.me/'.
 <br />
