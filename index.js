@@ -1,14 +1,13 @@
 #!/usr/bin/env node
-var http = require('http');
-var request = require('request');
-var fs = require('fs');
-var domain = require('domain');
-var index = fs.readFileSync('index.html');
-var favicon = fs.readFileSync('favicon.ico');
-
-var port = process.env.PORT || 8080;
-
-var allowedOriginalHeaders = /^Date|Last-Modified|Expires|Cache-Control|Pragma|Content-Length|Content-Type|Access-Control-Allow/i;
+var http = require('http'),
+	request = require('request'),
+	fs = require('fs'),
+	domain = require('domain'),
+	index = require('zlib').gzipSync(fs.readFileSync('index.html'))
+	favicon = require('zlib').gzipSync(fs.readFileSync('favicon.ico'))
+	port = process.env.PORT || 8080,
+	allowedOriginalHeaders = new RegExp('^' + require('./allowedOriginalHeaders.json').join('|'), 'i')
+	bannedUrls = new RegExp(require('./bannedUrls.json').join('|'), 'i')
 
 var server = http.createServer(function (req, res) {
 	var d = domain.create();
@@ -25,30 +24,30 @@ var server = http.createServer(function (req, res) {
 	d.run(function() {
 		handler(req, res);
 	});
-
 }).listen(port);
 
 
 function handler(req, res) {
-	console.log(req.url);
 	switch (req.url) {
 		case "/":
+		case "/index.html" :
+			res.setHeader('content-encoding', 'gzip')
+			res.setHeader('content-type', 'text/html')
 			res.writeHead(200);
 			res.write(index);
 			res.end();
-			break;
-		case "/index.html":
-			res.writeHead(200);
-			res.write(index);
-			res.end();
-			break;
 		case "/favicon.ico":
+			res.setHeader('content-encoding', 'gzip')
+			res.setHeader('content-type', 'image/x-icon')
 			res.writeHead(200);
 			res.write(favicon);
 			res.end();
+		case "/favicon.ico":
+			break;
 		default:
-			if (req.url.indexOf('vivastreet') > -1 || req.url.indexOf('porn') > -1){
-				res.end('banned');
+			if (bannedUrls.test(req.url)) {
+				res.writeHead(403);
+				res.end('FORBIDDEN');
 			} else {
 			try {
 				res.setTimeout(25000);

@@ -1,0 +1,10 @@
+[
+	"Date",
+	"Last-Modified",
+	"Expires",
+	"Cache-Control",
+	"Pragma",
+	"Content-Length",
+	"Content-Type",
+	"Access-Control-Allow"
+]
