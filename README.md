@@ -1,6 +1,8 @@
 crossorigin.me
 ==============
 
+[![Join the chat at https://gitter.im/technoboy10/crossorigin.me](https://badges.gitter.im/technoboy10/crossorigin.me.svg)](https://gitter.im/technoboy10/crossorigin.me?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A CORS proxy replacement. Based partly on https://github.com/bmpvieira/simple-corsproxy.
 
 ## What?
