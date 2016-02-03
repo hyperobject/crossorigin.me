@@ -104,13 +104,14 @@ var http = require('http'),
 				res.setHeader('Access-Control-Allow-Origin', '*');
 				res.setHeader('Access-Control-Allow-Credentials', false);
 				res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+				res.setHeader('Accept-Ranges', 'bytes');
 				res.setHeader('Expires', new Date(Date.now() + 86400000).toUTCString()); // one day in the future
 				var options = handleOptions(res, req),
 					r = request(options);
 				r.pipefilter = function(response, dest) {
 					for (var header in response.headers) {
 						if (!allowedOriginalHeaders.test(header)) {
-							dest.removeHeader(header);	
+							dest.removeHeader(header);
 						}
 						if (options.flags.gzip === true && header === 'content-encoding') dest.setHeader('content-encoding', response.headers[header])
 					}

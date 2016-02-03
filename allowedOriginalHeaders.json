@@ -6,5 +6,6 @@
 	"Pragma",
 	"Content-Length",
 	"Content-Type",
-	"Access-Control-Allow"
+	"Access-Control-Allow",
+	"Range"
 ]
