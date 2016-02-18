@@ -12,7 +12,9 @@ var http = require('http'),
 	faviconPNG = fsRead('favicon.png')
 	faviconPNGGZip = gzip(faviconPNG)
 	port = process.env.PORT || 8080,
-	allowedOriginalHeaders = new RegExp('^' + require('./allowedOriginalHeaders.json').join('|'), 'i')
+	allowedOriginalHeaders = new RegExp('^' + require('./allowedOriginalHeaders.json').join('|'), 'i'),
+	allowedRequestHeaders = require('./allowedRequestHeaders.json'),
+	_ = require('lodash'),
 	bannedUrls = new RegExp(require('./bannedUrls.json').join('|'), 'i'),
 	defaultOptions = {
 		gzip:true
@@ -78,6 +80,14 @@ var http = require('http'),
 						break;
 				}
 			}
+
+		var toLower = function (str) {
+			return str.toLowerCase();
+		}
+		//add headers from original request
+		for ( var header of _.map(allowedRequestHeaders, toLower)) {
+			opts.headers[header] = req.headers[header]
+		}
 		return opts
 	},
 	handler = function handler(req, res) {
@@ -110,7 +120,7 @@ var http = require('http'),
 				r.pipefilter = function(response, dest) {
 					for (var header in response.headers) {
 						if (!allowedOriginalHeaders.test(header)) {
-							dest.removeHeader(header);	
+							dest.removeHeader(header);
 						}
 						if (options.flags.gzip === true && header === 'content-encoding') dest.setHeader('content-encoding', response.headers[header])
 					}
