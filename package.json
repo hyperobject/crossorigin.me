@@ -8,8 +8,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "request": "^2.40.0",
-    "lodash": "latest"
+    "request": "^2.40.0"
   },
   "keywords": [
     "cors",

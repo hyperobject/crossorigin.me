@@ -14,7 +14,6 @@ var http = require('http'),
 	port = process.env.PORT || 8080,
 	allowedOriginalHeaders = new RegExp('^' + require('./allowedOriginalHeaders.json').join('|'), 'i'),
 	allowedRequestHeaders = require('./allowedRequestHeaders.json'),
-	_ = require('lodash'),
 	bannedUrls = new RegExp(require('./bannedUrls.json').join('|'), 'i'),
 	defaultOptions = {
 		gzip:true
@@ -85,7 +84,7 @@ var http = require('http'),
 			return str.toLowerCase();
 		}
 		//add headers from original request
-		for ( var header of _.map(allowedRequestHeaders, toLower)) {
+		for ( var header of allowedRequestHeaders.map(toLower)) {
 			opts.headers[header] = req.headers[header]
 		}
 		return opts
