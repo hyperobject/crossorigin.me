@@ -31,7 +31,7 @@ var http = require('http'),
 			'accept-encoding': 'gzip'
 		}
 	},
-	sizeLimit = 2e6; // 2MB - change this to false if you want unlimited file size
+	sizeLimit = 1e6; // 2MB - change this to false if you want unlimited file size
 
 	server = http.createServer(function (req, res) {
 		var d = domain.create();
@@ -130,12 +130,12 @@ var http = require('http'),
 					response.on('data', function(chunk){
 						size += chunk.length;
 						if (sizeLimit && size > sizeLimit){
-							size = 'over max';
+							size = errorString('over max');
 							throw new Error('Large File');
 						}
 					});
 					response.on('end', function(){
-						console.log(normalString('Request for %s, size %s bytes'), req.url, size);
+						console.log(normalString('Request for %s, size ' + size + ' bytes'), req.url);
 					});
 					for (var header in response.headers) {
 						if (!allowedOriginalHeaders.test(header)) {
