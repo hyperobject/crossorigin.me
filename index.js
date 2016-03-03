@@ -31,11 +31,13 @@ var http = require('http'),
 			'accept-encoding': 'gzip'
 		}
 	},
+	sizeLimit = 2e6; // 2MB - change this to false if you want unlimited file size
+
 	server = http.createServer(function (req, res) {
 		var d = domain.create();
 		d.on('error', function (e){
 			res.statusCode = 500;
-			if (e.message != 'Large File' && (!debug && e.message != 'Parse Error')){
+			if (e.message != 'Large File' && (debug && e.message == 'Parse Error')){
 				console.log(errorString(chalk.bold('Error: ') + (debug ? e.stack : e.message)));
 				res.end('Error: ' + ((e instanceof TypeError) ? "make sure your URL is correct" : e.message));
 			}
@@ -50,7 +52,10 @@ var http = require('http'),
 	}).listen(port);
 	console.log(chalk.cyan('Listening on port %s'),port);
 	if (debug){
-		console.log(chalk.magenta('Running in debug mode!'));
+		console.log(chalk.bold.magenta('Running in debug mode!'));
+		if (sizeLimit){
+			console.log(chalk.magenta('Maximum file size is %s bytes'), sizeLimit)
+		}
 	}
 	acceptsGzip = function acceptsGzip (req, res, normal, gzipped) {
 		if (/gzip/g.test(req.headers['accept-encoding'])) {
@@ -124,7 +129,7 @@ var http = require('http'),
 					var size = 0;
 					response.on('data', function(chunk){
 						size += chunk.length;
-						if (size > 2e6){
+						if (sizeLimit && size > sizeLimit){
 							size = 'over max';
 							throw new Error('Large File');
 						}
