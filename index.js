@@ -5,14 +5,21 @@ var http = require('http'),
 	fsRead = fs.readFileSync,
 	gzip = require('zlib').gzipSync,
 	domain = require('domain'),
-	index = fsRead('index.html')
-	indexGzip = gzip(index)
-	favicon = fsRead('favicon.ico')
-	faviconGzip = gzip(favicon)
-	faviconPNG = fsRead('favicon.png')
-	faviconPNGGZip = gzip(faviconPNG)
+	chalk = require('chalk');
+
+
+	var index = fsRead('index.html'),
+	indexGzip = gzip(index),
+	favicon = fsRead('favicon.ico'),
+	faviconGzip = gzip(favicon),
+	faviconPNG = fsRead('favicon.png'),
+	faviconPNGGZip = gzip(faviconPNG),
 	port = process.env.PORT || 8080,
-	allowedOriginalHeaders = new RegExp('^' + require('./allowedOriginalHeaders.json').join('|'), 'i')
+	debug = false,
+	errorString = chalk.red,
+	normalString = chalk.yellow;
+
+	var allowedOriginalHeaders = new RegExp('^' + require('./allowedOriginalHeaders.json').join('|'), 'i'),
 	bannedUrls = new RegExp(require('./bannedUrls.json').join('|'), 'i'),
 	defaultOptions = {
 		gzip:true
@@ -27,18 +34,24 @@ var http = require('http'),
 	server = http.createServer(function (req, res) {
 		var d = domain.create();
 		d.on('error', function (e){
-			console.log('ERROR', e.stack);
 			res.statusCode = 500;
-			res.end('Error: ' + ((e instanceof TypeError) ? "make sure your URL is correct" : String(e)));
+			if (e.message != 'Large File' && (!debug && e.message != 'Parse Error')){
+				console.log(errorString(chalk.bold('Error: ') + (debug ? e.stack : e.message)));
+				res.end('Error: ' + ((e instanceof TypeError) ? "make sure your URL is correct" : e.message));
+			}
+			res.end();
 		});
-
 		d.add(req);
 		d.add(res);
 
 		d.run(function() {
 			handler(req, res);
 		});
-	}).listen(port),
+	}).listen(port);
+	console.log(chalk.cyan('Listening on port %s'),port);
+	if (debug){
+		console.log(chalk.magenta('Running in debug mode!'));
+	}
 	acceptsGzip = function acceptsGzip (req, res, normal, gzipped) {
 		if (/gzip/g.test(req.headers['accept-encoding'])) {
 			res.setHeader('content-encoding', 'gzip')
@@ -108,9 +121,20 @@ var http = require('http'),
 				var options = handleOptions(res, req),
 					r = request(options);
 				r.pipefilter = function(response, dest) {
+					var size = 0;
+					response.on('data', function(chunk){
+						size += chunk.length;
+						if (size > 2e6){
+							size = 'over max';
+							throw new Error('Large File');
+						}
+					});
+					response.on('end', function(){
+						console.log(normalString('Request for %s, size %s bytes'), req.url, size);
+					});
 					for (var header in response.headers) {
 						if (!allowedOriginalHeaders.test(header)) {
-							dest.removeHeader(header);	
+							dest.removeHeader(header);
 						}
 						if (options.flags.gzip === true && header === 'content-encoding') dest.setHeader('content-encoding', response.headers[header])
 					}
