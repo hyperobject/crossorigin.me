@@ -127,6 +127,7 @@ var http = require('http'),
 					r = request(options);
 				r.pipefilter = function(response, dest) {
 					var size = 0;
+					var ip;
 					response.on('data', function(chunk){
 						size += chunk.length;
 						if (sizeLimit && size > sizeLimit){
@@ -137,6 +138,7 @@ var http = require('http'),
 					response.on('end', function(){
 						console.log(normalString('Request for %s, size ' + size + ' bytes'), req.url);
 						if (debug){
+							ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress ||req.connection.socket.remoteAddress;
 							console.log(chalk.magenta('Originated from ' + req.headers['x-forwarded-for']));
 						}
 					});
