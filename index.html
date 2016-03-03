@@ -159,11 +159,6 @@ code {
 <h3><a name="what" href="#what">What's a "CORS proxy"?</a></h3>
 <p>A <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> proxy is a service that allows developers (probably you) to access resources from other websites, without having to own that website. </p>
 <br />
-
-<h3><a name="why" href="#why">Why does this site exist?</a></h3>
-<p>A popular CORS proxy, corsproxy.com, recently disappeared. Several <a href="https://phosphorus.github.io/">cool projects</a> relied on CORS proxy, so I decided to set up a replacement service.</p>
-
-<br />
 <h3><a name="how" href="#how">How do I use it?</a></h3>
 <p>It's really easy. When you need to access a resource from a website that isn't CORS-enabled, append 'http://crossorigin.me' to the beginning of that URL. For example, if you wanted to grab the Google homepage, your code would request</p>
 <code>
@@ -172,14 +167,13 @@ https://crossorigin.me/https://google.com
 <p>Remember to keep the 'http://' or 'https://' after 'crossorigin.me/'.
 <br />
 <h3><a name="who" href="#who">Who set this up?</a></h3>
-<p><a href="http://technoboy10.tk">I</a> <a href="https://github.com/technoboy10">did</a>! I'm <a href="https://twitter.com/technoboyIO">technoboy10</a>, a software geek who also likes hardware. I would also appreciate it if you donated some BTC by clicking the donation button at the top of the page - domains aren't free (and neither is college)! </p>
+<p><a href="http://technoboy10.tk">I</a> <a href="https://github.com/technoboy10">did</a>! I'm <a href="https://twitter.com/technoboyIO">technoboy10</a>, an all-around geek who likes coding. I would also appreciate it if you donated some BTC by clicking the donation button at the top of the page - domains aren't free (and neither is college)! </p>
 <br />
 <h3><a name="security" href="#security">AAAAH SO INSECURE!!!</a></h3>
 <p>...not really. By default, CORS requests do <b>not</b> send or set cookies, and neither does crossorigin.me. I take security very seriously, and I'll do my best to plug any serious security holes. Oh, and crossorigin.me is <a href="http://github.com/technoboy10/crossorigin.me">open source</a>, so please feel free to fix any security issues you find. :) </p>
 <br />
-<h3><a name="missing" href="#missing">This doesn't support PUT or DELETE!</a></h3>
-<p>No, and I'm pretty sure it shouldn't. If crossorigin.me supported those verbs, you could do some pretty messed up stuff. </p>
-<code>DELETE your_banking_account</code>
+<h3><a name="verbs" href="#verbs">This only supports GET requests!</a></h3>
+<p>Yup. Only allowing GET requests makes my code more simple, and POST requests make me nervous (uploading data to somebody else's servers seems like a security hole to me).</p>
 <p>Disagree? <a href="https://github.com/technoboy10/crossorigin.me/issues/new">File an issue</a> and let's talk.</p>
 <br />
 <h3><a name="legal" href="#legal">Disclaimer</a></h3>
