@@ -15,7 +15,7 @@ var http = require('http'),
 	faviconPNG = fsRead('favicon.png'),
 	faviconPNGGZip = gzip(faviconPNG),
 	port = process.env.PORT || 8080,
-	debug = false,
+	debug = Boolean(process.argv[2]),
 	errorString = chalk.red,
 	normalString = chalk.yellow;
 
@@ -136,6 +136,9 @@ var http = require('http'),
 					});
 					response.on('end', function(){
 						console.log(normalString('Request for %s, size ' + size + ' bytes'), req.url);
+						if (debug){
+							console.log(chalk.magenta('Originated from ' + req.headers['x-forwarded-for']));
+						}
 					});
 					for (var header in response.headers) {
 						if (!allowedOriginalHeaders.test(header)) {
