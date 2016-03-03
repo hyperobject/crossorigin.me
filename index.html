@@ -17,7 +17,7 @@ html, body {
 html {
 	min-width: 100%;
 }
-    
+
 body, #header{
 	min-width: 168px;
 }
@@ -49,7 +49,7 @@ a {
 	line-height: 5vh;
 	transition: color .5s;
 }
-    
+
 #header a:hover{
 	color: white;
 }
@@ -87,7 +87,7 @@ h3 a:hover {
 .blockchain.stage-loading{
 	text-align:center;
 }
-    
+
 code {
 	display: inline-block;
 	font-family: 'Droid Sans Mono';
@@ -96,7 +96,7 @@ code {
 	padding: 5px 10px;
 	box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 }
-    
+
 @media screen and (max-width: 600px) {
 	#content {
 		width: 100%;
@@ -105,7 +105,7 @@ code {
 	#text {
 		max-width: 80vw;
 	}
-	    
+
 	.blockchain-btn{
 		max-width:300px;
 		width: 80vw
@@ -134,26 +134,28 @@ code {
 <h2>Long live CORS proxies!</h2>
 <p>Welcome to crossorigin.me, the free CORS proxy for everyone!</p>
 <br />
-<div class="blockchain-btn"
-     data-address="1SYK76KL3TDSM6AZ12MFrC3bnSKfKDmcW"
-     data-shared="false">
-    <div class="blockchain stage-begin">
-        <img src="https://blockchain.info/Resources/buttons/donate_64.png"/>
-    </div>
-    <div class="blockchain stage-loading">
-        <img src="https://blockchain.info/Resources/loading-large.gif"/>
-    </div>
-    <div class="blockchain stage-ready">
-         <p align="center">Please Donate To Bitcoin Address: <b>[[address]]</b></p>
-         <p align="center" class="qr-code"></p>
-    </div>
-    <div class="blockchain stage-paid">
-         Donation of <b>[[value]] BTC</b> Received. Thank You.
-    </div>
-    <div class="blockchain stage-error">
-        <font color="red">[[error]]</font>
-    </div>
-</div>
+<script src="//blockr.io/js_external/coinwidget/coin.js"></script>
+		<script>
+			CoinWidgetCom.go({
+				wallet_address: '1GSKWayDGEMWfwMwFTTz79CCtCCYQLWtWF',
+				currency: 'bitcoin',
+				counter: 'count',
+				lbl_button: 'Donate',
+				lbl_count: 'donations',
+				lbl_amount: 'BTC',
+				lbl_address: 'Use address below to donate. Thanks!',
+				qrcode: true,
+				alignment: 'bl',
+				decimals: 3,
+				size: "big",
+				color: "light",
+				countdownFrom: "0",
+				element: "#coinwidget-bitcoin-1GSKWayDGEMWfwMwFTTz79CCtCCYQLWtWF",
+				onShow: function(){},
+				onHide: function(){}
+			});
+		</script>
+		<div id="coinwidget-bitcoin-1GSKWayDGEMWfwMwFTTz79CCtCCYQLWtWF"></div>
 <h3><a name="what" href="#what">What's a "CORS proxy"?</a></h3>
 <p>A <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> proxy is a service that allows developers (probably you) to access resources from other websites, without having to own that website. </p>
 <br />
