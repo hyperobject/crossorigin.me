@@ -132,7 +132,7 @@ var http = require('http'),
 						size += chunk.length;
 						if (sizeLimit && size > sizeLimit){
 							size = errorString('over max');
-							throw new Error('Large File');
+							response.end();
 						}
 					});
 					response.on('end', function(){
