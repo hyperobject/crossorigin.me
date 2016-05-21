@@ -147,6 +147,7 @@ var http = require('http'),
 							dest.removeHeader(header);
 						}
 						if (options.flags.gzip === true && header === 'content-encoding') dest.setHeader('content-encoding', response.headers[header])
+						else dest.setHeader('content-encoding', 'identity')
 					}
 				};
 				r.pipe(res);
