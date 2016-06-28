@@ -160,7 +160,7 @@ var handler = function handler(req, res) {
                     dest.setHeader('content-encoding', response.headers[header]);
                 }
             }
-            r.pipe(res);
         };
+        r.pipe(res);
     }
 };
