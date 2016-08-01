@@ -104,6 +104,10 @@ var handleOptions = function handleOptions (res, req) {
             break;
         }
     }
+    opts.method = req.method;
+    opts.headers['Content-Type'] = req.headers['content-type'];
+    opts.followAllRedirects = true;
+    opts.body = req;
     return opts;
 };
 
