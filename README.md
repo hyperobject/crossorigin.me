@@ -1,5 +1,8 @@
 crossorigin.me
 ==============
+[![Build
+Status](https://travis-ci.org/technoboy10/crossorigin.me.svg?branch=v2)](https://travis-ci.org/technoboy10/crossorigin.me)
+
 
 [![Join the chat at https://gitter.im/technoboy10/crossorigin.me](https://badges.gitter.im/technoboy10/crossorigin.me.svg)](https://gitter.im/technoboy10/crossorigin.me?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Follow on twitter](https://img.shields.io/badge/twitter-%40corsproxy-blue.svg)](https://twitter.com/corsproxy)
