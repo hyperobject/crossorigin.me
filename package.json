@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/technoboy10/crossorigin.me/issues"
   },
-  "homepage": "https://crossorigin.me"
+  "homepage": "https://crossorigin.me",
+  "devDependencies": {
+    "eslint": "^3.10.2"
+  }
 }
