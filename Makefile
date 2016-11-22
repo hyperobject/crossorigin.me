@@ -1,4 +1,4 @@
-LINT=./node_modules/.bin/eslint
+ESLINT=./node_modules/.bin/eslint
 MOCHA=./node_modules/.bin/mocha
 NODE=node
 
