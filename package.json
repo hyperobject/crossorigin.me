@@ -20,6 +20,11 @@
   },
   "homepage": "https://crossorigin.me",
   "devDependencies": {
-    "eslint": "^3.10.2"
+    "eslint": "^3.10.2",
+    "eslint-plugin-mocha": "^4.7.0"
+  },
+  "dependencies": {
+    "restify": "^4.3.0",
+    "restify-router": "^0.2.1"
   }
 }
