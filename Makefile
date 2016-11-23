@@ -4,12 +4,13 @@ NODE=node
 
 test:
 		@make lint
+		@make unit
 
 lint:
 		$(ESLINT) . --ext .js
 
 unit:
-		$(MOCHA)
+		$(MOCHA) tests/*
 
 # ---------------------------
 #  .PHONY: test lint unit

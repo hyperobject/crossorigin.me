@@ -21,7 +21,9 @@
   "homepage": "https://crossorigin.me",
   "devDependencies": {
     "eslint": "^3.10.2",
-    "eslint-plugin-mocha": "^4.7.0"
+    "eslint-plugin-mocha": "^4.7.0",
+    "mocha": "^3.1.2",
+    "supertest": "^2.0.1"
   },
   "dependencies": {
     "restify": "^4.3.0",
