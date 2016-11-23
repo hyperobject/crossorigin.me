@@ -14,3 +14,14 @@ describe('Simple CORS request', function () {
         });
     });
 });
+
+describe('CORS Preflight', function () {
+    it('should include the correct headers', function (done) {
+        server
+        .options('/')
+        .expect('Access-Control-Allow-Origin', '*')
+        .expect('Access-Control-Allow-Methods', 'GET, POST, PUT')
+        .expect('Access-Control-Max-Age', '86400')
+        .expect(200, done);
+    });
+});
