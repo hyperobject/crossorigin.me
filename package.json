@@ -1,28 +1,33 @@
 {
   "name": "crossorigin.me",
-  "description": "Proxy to access resources that lack the Access-Control-Allow-Origin * header",
-  "version": "0.0.1",
-  "author": {
-    "name": "technoboy10",
-    "email": "connor@crossorigin.me"
+  "version": "2.0.0",
+  "description": "A CORS proxy for everyone",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
   },
-  "license": "MIT",
-  "dependencies": {
-    "chalk": "1.1.3",
-    "request": "2.70.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/technoboy10/crossorigin.me.git"
   },
   "keywords": [
-    "cors",
-    "proxy",
-    "server",
-    "heroku"
+    "cors"
   ],
-  "main": "index.js",
-  "bin": {
-    "crossorigin.me": "index.js"
+  "author": "Connor Hudson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/technoboy10/crossorigin.me/issues"
   },
-  "scripts": {
-    "start": "node index.js",
-    "test": "node index.js --debug"
+  "homepage": "https://crossorigin.me",
+  "devDependencies": {
+    "eslint": "3.10.2",
+    "eslint-plugin-mocha": "4.7.0",
+    "mocha": "3.1.2",
+    "supertest": "2.0.1"
+  },
+  "dependencies": {
+    "request": "2.79.0",
+    "restify": "4.3.0",
+    "restify-router": "0.2.1"
   }
 }
