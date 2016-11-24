@@ -3,6 +3,7 @@ const request = require('request');
 get handler handles standard GET reqs as well as streams
 */
 function get (req, res, next) {
+
     res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
 
     var data = 0; // This variable contains the size of the data (for limiting file size)
@@ -10,7 +11,7 @@ function get (req, res, next) {
     request
         .get(req.params[0]) // GET the document that the user specified
         .on('response', function (response) {
-            res.statusCode = response.statusCode;
+            res.status(response.statusCode);
         })
         .on('data', function (chunk) {
             data += chunk.length;
@@ -29,10 +30,12 @@ function get (req, res, next) {
 post and put handlers both handle sending data to servers
 */
 function post (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
     next();
 }
 
 function put (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
     next();
 }
 
