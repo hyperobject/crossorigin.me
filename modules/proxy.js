@@ -18,6 +18,12 @@ function get (req, res, next) {
 
     var url = req.params[0];
 
+    // require the Origin header
+    if (!req.headers['origin']) {
+        res.statusCode = 403;
+        return res.end('Origin: header is required');
+    }
+
     // forward client headers to server
     var headers = {};
     for (var header in req.headers) {
