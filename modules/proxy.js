@@ -25,6 +25,9 @@ function get (req, res, next) {
     next();
 }
 
+/*
+post and put handlers both handle sending data to servers
+*/
 function post (req, res, next) {
     next();
 }
@@ -33,7 +36,9 @@ function put (req, res, next) {
     next();
 }
 
-/* opts handler allows us to use our own CORS preflight settings */
+/*
+opts handler allows us to use our own CORS preflight settings
+*/
 function opts (req, res, next) { // Couple of lines taken from http://stackoverflow.com/questions/14338683
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT'); // Only allow GET, POST, and PUT requests
