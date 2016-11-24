@@ -4,3 +4,4 @@ coverage
 tmp
 .jshintrc
 .npmignore
+npm-debug.log
