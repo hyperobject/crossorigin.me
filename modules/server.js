@@ -8,7 +8,13 @@ const server = restify.createServer({
 const freeTier = restify.throttle({
     rate: 3,
     burst: 10,
-    ip: true
+    ip: true,
+    overrides: {
+        '192.168.1.1': {
+            rate: 0,        // unlimited
+            burst: 0
+        }
+    }
 });
 
 // CORS configuration
