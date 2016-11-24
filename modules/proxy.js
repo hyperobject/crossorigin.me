@@ -3,7 +3,6 @@ const request = require('request');
 get handler handles standard GET reqs as well as streams
 */
 function get (req, res, next) {
-    console.log(req.url); //eslint-disable-line
     res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
 
     var data = 0; // This variable contains the size of the data (for limiting file size)
