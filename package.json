@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npm run lint && npm run unit",
     "lint": "eslint . --ext .js",
-    "unit": "mocha tests/*"
+    "unit": "mocha tests/*",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
