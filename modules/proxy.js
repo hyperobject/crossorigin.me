@@ -48,9 +48,4 @@ function opts (req, res, next) { // Couple of lines taken from http://stackoverf
     next();
 }
 
-module.exports = {
-    get:get,
-    post:post,
-    put:put,
-    opts:opts
-}; // Ideally, this would use ES6 dictionary syntax, but ¯\_(ツ)_/¯
+module.exports = {get, post, put, opts};
