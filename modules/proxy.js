@@ -22,6 +22,8 @@ function get (req, res, next) {
             headers[header] = req.headers[header];
         }
     }
+    var forwardedFor = req.headers['X-Fowarded-For'];
+    headers['X-Fowarded-For'] = (forwardedFor ? forwardedFor + ',' : '') + req.connection.remoteAddress;
 
     var options = {
         url: req.params[0],
