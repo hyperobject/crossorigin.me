@@ -6,8 +6,15 @@ describe('Simple CORS request', function () {
     it('should include the correct headers', function (done) {
         server
         .get('/https://google.com')
+        .set('Origin', 'http://example.com')
         .expect('Access-Control-Allow-Origin', '*')
         .expect(200, done);
+    });
+
+    it('should require the Origin header', function (done) {
+        server
+        .get('/https://google.com')
+        .expect(403, done);
     });
 });
 
@@ -21,3 +28,5 @@ describe('CORS Preflight', function () {
         .expect(200, done);
     });
 });
+
+
