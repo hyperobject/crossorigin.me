@@ -1,5 +1,9 @@
 const request = require('request');
 
+let requireHeader = [
+    'origin',
+    'x-requested-with',
+];
 let clientHeadersBlacklist = new Set([
     'host',
     'cookie',
@@ -17,6 +21,19 @@ function get (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
 
     var url = req.params[0];
+
+    // require CORS header
+    if (!requireHeader.some(header => req.headers[header])) {
+        res.statusCode = 403;
+        return res.end('Origin: header is required');
+    }
+
+    // TODO redirect same origin
+    /* from cors-anywhere: boolean redirectSameOrigin - If true, requests to
+     * URLs from the same origin will not be proxied but redirected. The
+     * primary purpose for this option is to save server resources by
+     * delegating the request to the client (since same-origin requests should
+     * always succeed, even without proxying). */
 
     // forward client headers to server
     var headers = {};
