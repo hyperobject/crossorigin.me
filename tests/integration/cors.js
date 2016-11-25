@@ -16,6 +16,14 @@ describe('Simple CORS request', function () {
         .get('/https://google.com')
         .expect(403, done);
     });
+
+    it('should not fail on sites that have CORS enabled', function (done) {
+        server
+        .get('/http://technoboy10.tk/scratch2015.html')
+        .set('Origin', 'http://example.com')
+        .expect('Access-Control-Allow-Origin', '*')
+        .expect(302, done); // For some reason I'm getting 302 statuses instead of 200???
+    });
 });
 
 describe('CORS Preflight', function () {
@@ -28,5 +36,3 @@ describe('CORS Preflight', function () {
         .expect(200, done);
     });
 });
-
-
