@@ -1,0 +1,9 @@
+{
+apps: [
+  {
+    name: "crossorigin",
+    script: "index.js",
+    interpreter: "node@6.9.1"
+  }
+]
+}
