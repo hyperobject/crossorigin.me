@@ -8,7 +8,7 @@ const server = restify.createServer({
 const freeTier = restify.throttle({
     rate: 3,
     burst: 10,
-    ip: true,
+    xff: true,
     overrides: {
         '192.168.1.1': {
             rate: 0,        // unlimited
