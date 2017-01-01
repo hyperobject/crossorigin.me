@@ -20,7 +20,7 @@ function get (req, res, next) {
 
     res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
 
-    var url = req.params[0];
+    var url = decodeURIComponent(req.params[0]);
 
     // require CORS header
     if (!requireHeader.some(header => req.headers[header])) {
