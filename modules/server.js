@@ -5,6 +5,8 @@ const server = restify.createServer({
     name: 'crossorigin.me'
 });
 
+server.use(restify.queryParser({ mapParams: false }));
+
 const freeTier = restify.throttle({
     rate: 3,
     burst: 10,
