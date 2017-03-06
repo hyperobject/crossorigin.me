@@ -23,7 +23,7 @@ function get (req, res, next) {
 
     res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
 
-    var url = req.params[0];
+    var url = req.url.substr(1);
 
     // disallow blocked phrases
     if (url.match(blockedPhrases)) {
@@ -57,7 +57,7 @@ function get (req, res, next) {
     var data = 0; // This variable contains the size of the data (for limiting file size)
     var limit = 2e6; //TODO: change this to something different depending on tier. It's fine for now.
     request
-        .get(url, {headers, qs:req.query}) // GET the document that the user specified
+        .get(url, {headers}) // GET the document that the user specified
         .on('response', function (page) {
             res.statusCode = page.statusCode;
 
