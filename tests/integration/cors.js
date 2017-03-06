@@ -31,7 +31,7 @@ describe('CORS Preflight', function () {
         server
         .options('/')
         .expect('Access-Control-Allow-Origin', '*')
-        .expect('Access-Control-Allow-Methods', 'GET, POST, PUT')
+        .expect('Access-Control-Allow-Methods', 'GET')
         .expect('Access-Control-Max-Age', '86400')
         .expect(200, done);
     });

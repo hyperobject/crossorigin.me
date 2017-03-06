@@ -1,9 +1,12 @@
 const request = require('request');
 
+const blockedPhrases = new RegExp(/porn|sexy/); // No thank you.
+
 let requireHeader = [
     'origin',
     'x-requested-with',
 ];
+
 let clientHeadersBlacklist = new Set([
     'host',
     'cookie',
@@ -20,7 +23,13 @@ function get (req, res, next) {
 
     res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
 
-    var url = req.params[0];
+    var url = req.url.substr(1);
+
+    // disallow blocked phrases
+    if (url.match(blockedPhrases)) {
+        res.statusCode = 403;
+        return res.end('Phrase in URL is disallowed.');
+    }
 
     // require CORS header
     if (!requireHeader.some(header => req.headers[header])) {
@@ -80,7 +89,7 @@ function get (req, res, next) {
 }
 
 /*
-post and put handlers both handle sending data to servers
+post and put handlers both handle sending data to servers (NOT FINISHED YET)
 */
 function post (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
@@ -97,7 +106,7 @@ opts handler allows us to use our own CORS preflight settings
 */
 function opts (req, res, next) { // Couple of lines taken from http://stackoverflow.com/questions/14338683
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT'); // Only allow GET, POST, and PUT requests
+    res.header('Access-Control-Allow-Methods', 'GET'); // Only allow GET for now
     res.header('Access-Control-Allow-Headers', req.header('Access-Control-Request-Headers'));
     res.header('Access-Control-Max-Age', '86400'); // Cache preflight for 24 hrs if supported
     res.send(200);

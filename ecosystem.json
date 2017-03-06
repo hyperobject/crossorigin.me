@@ -1,0 +1,13 @@
+{
+apps: [
+  {
+    name: "crossorigin",
+    script: "index.js",
+    interpreter: "node@6.9.1",
+    env: {
+          "NODE_ENV": "production",
+          "PORT": "80"
+        }
+  }
+],
+}
