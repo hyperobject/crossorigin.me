@@ -31,6 +31,7 @@
   "dependencies": {
     "request": "2.79.0",
     "restify": "4.3.0",
-    "restify-router": "0.2.1"
+    "restify-router": "0.2.1",
+    "toobusy-js": "^0.5.1"
   }
 }
