@@ -2,13 +2,13 @@
 const supertest = require('supertest');
 const server = supertest(require('../../modules/server.js'));
 
-describe('Large file request', function () {
-    it('should only serve 2MB of data', function (done) { // Will attempt to fetch a 3.1MB file
+describe('URL handler', function () {
+    it('should pass through query parameters', function (done) {
         server
-        .get('/https://01.keybase.pub/big.jpg')
+        .get('/https://queryparameter.herokuapp.com/?test=success')
         .set('Origin', 'http://example.com')
         .expect(function (res) {
-            res.body.length < 2e6;
+            res.body = 'woot! success';
         })
         .expect(200, done);
     });

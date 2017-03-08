@@ -5,10 +5,12 @@ const server = restify.createServer({
     name: 'crossorigin.me'
 });
 
+server.use(restify.queryParser({ mapParams: false }));
+
 const freeTier = restify.throttle({
     rate: 3,
     burst: 10,
-    ip: true,
+    xff: true,
     overrides: {
         '192.168.1.1': {
             rate: 0,        // unlimited
@@ -23,7 +25,9 @@ server.opts('/', proxy.opts);
 
 // Request handler configuration (for free tier)
 server.get(/^\/(https?:\/\/.+)/, freeTier, proxy.get);
-server.post(/^\/(http:\/\/.+)/, freeTier, proxy.post);
-server.put(/^\/(http:\/\/.+)/, freeTier, proxy.put);
+
+// These aren't *quite* ready for prime time
+//server.post(/^\/(http:\/\/.+)/, freeTier, proxy.post);
+//server.put(/^\/(http:\/\/.+)/, freeTier, proxy.put);
 
 module.exports = server;
