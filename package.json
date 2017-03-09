@@ -29,7 +29,7 @@
     "supertest": "2.0.1"
   },
   "dependencies": {
-    "request": "2.79.0",
+    "request": "2.81.0",
     "restify": "4.3.0",
     "restify-router": "0.2.1"
   }
