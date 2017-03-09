@@ -59,6 +59,11 @@ function get (req, res, next) {
     request
         .get(url, {headers}) // GET the document that the user specified
         .on('response', function (page) {
+            // Check content length - if it's larger than the size limit, end the request with a 413 error.
+            if (Number(page.headers['content-length']) > sizeLimit) {
+                res.statusCode = 413;
+                res.end('ERROR 413: Maximum allowed size is ' + sizeLimit + ' bytes.');
+            }
             res.statusCode = page.statusCode;
 
             // if the page already supports cors, redirect to the URL directly
