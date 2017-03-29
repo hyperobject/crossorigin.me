@@ -1,4 +1,5 @@
 const restify = require('restify');
+const toobusy = require('toobusy-js');
 var proxy = require('./proxy');
 
 const server = restify.createServer({
@@ -6,6 +7,14 @@ const server = restify.createServer({
 });
 
 server.use(restify.queryParser({ mapParams: false }));
+
+server.use(function (req, res, next) {
+    if (toobusy()) {
+        res.send(503, 'Server is overloaded! Please try again later.');
+    } else {
+        next();
+    }
+});
 
 const freeTier = restify.throttle({
     rate: 3,
