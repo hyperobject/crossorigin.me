@@ -10,6 +10,9 @@ describe('Large file request', function () {
         .expect(function (res) {
             res.body.length < 2e6;
         })
-        .expect(200, done);
+        .expect(function (res) {
+            res.statusCode == 200 || res.statusCode == 413;
+        })
+        .end(done);
     });
 });
