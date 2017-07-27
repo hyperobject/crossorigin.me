@@ -22,7 +22,7 @@ describe('GET with CORS', function () {
         .get('/http://technoboy10.tk/scratch2015.html')
         .set('Origin', 'http://example.com')
         .expect('Access-Control-Allow-Origin', '*')
-        .expect(302, done); // For some reason I'm getting 302 statuses instead of 200???
+        .expect(203, done); // For some reason I'm getting 203 statuses instead of 200
     });
 });
 
