@@ -19,10 +19,10 @@ describe('GET with CORS', function () {
 
     it('should not fail on sites that have CORS enabled', function (done) {
         server
-        .get('/http://technoboy10.tk/scratch2015.html')
+        .get('/http://technoboy10.github.io/scratch2015.html')
         .set('Origin', 'http://example.com')
         .expect('Access-Control-Allow-Origin', '*')
-        .expect(203, done); // For some reason I'm getting 203 statuses instead of 200
+        .expect(302, done); // For some reason I'm getting 203 statuses instead of 200
     });
 });
 
