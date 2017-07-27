@@ -34,7 +34,7 @@ server.opts('/', proxy.opts);
 
 // Request handler configuration (for free tier)
 server.get(/^\/(https?:\/\/.+)/, freeTier, proxy.get);
-server.post(/^\/(http:\/\/.+)/, freeTier, proxy.post);
+server.post(/^\/(https?:\/\/.+)/, freeTier, proxy.post);
 
 
 module.exports = server;
