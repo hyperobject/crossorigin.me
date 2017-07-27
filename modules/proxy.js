@@ -93,15 +93,7 @@ function get (req, res, next) {
     next();
 }
 
-/*
-post and put handlers both handle sending data to servers (NOT FINISHED YET)
-*/
 function post (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
-    next();
-}
-
-function put (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*'); // Actually do the CORS thing! :)
 
     var url = req.params[0];
@@ -133,7 +125,7 @@ function put (req, res, next) {
     headers['X-Fowarded-For'] = (forwardedFor ? forwardedFor + ',' : '') + req.connection.remoteAddress;
     req.pipe(
         request
-        .put(url, {headers})
+        .post(url, {headers})
         .on('data', function (chunk) {
             data += chunk.length;
             if (data > sizeLimit){
@@ -172,4 +164,4 @@ function opts (req, res, next) { // Couple of lines taken from http://stackoverf
     next();
 }
 
-module.exports = {get, post, put, opts};
+module.exports = {get, post, opts};
