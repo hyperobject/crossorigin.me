@@ -10,4 +10,12 @@ Status](https://travis-ci.org/technoboy10/crossorigin.me.svg?branch=v2)](https:/
 
 crossorigin.me is a CORS proxy. It lets developers (like you!) access resources from other sites that don't have CORS enabled on their server. See [the website](https://crossorigin.me) for more information.
 
+# Building
 
+```
+npm install
+npm start
+```
+
+# Docker
+An unofficial Docker image is available at `spiffytech/crossorigin.me`
