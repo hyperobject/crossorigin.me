@@ -13,8 +13,7 @@ crossorigin.me is a CORS proxy. It lets developers (like you!) access resources 
 # Building
 
 ```
-npm install -g yarn
-yarn install
+npm install
 npm start
 ```
 
